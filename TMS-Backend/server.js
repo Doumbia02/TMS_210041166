@@ -12,6 +12,13 @@ app.listen(3005, ()=>{
     
 });
 
+mongoose.connect("mongodb+srv://mansoureh225:1eomTfi0gbTkCsXb@cluster0.qbw1j.mongodb.net/Mansour?retryWrites=true&w=majority&appName=Cluster0"
+).then(() => {
+        console.log("Connected to MongoDB");
+    }).catch((err) => {
+        console.log("Failed to connect to MongoDB", err);
+});
+
 // // username: mansoureh225
 // // password:  1eomTfi0gbTkCsXb
 
