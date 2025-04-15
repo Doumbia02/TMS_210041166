@@ -1,5 +1,7 @@
 const express = require('express');
 const mongoose = require("mongoose");
+const auth = require('../middleware/auth');
+const router = express.Router();
 const app = express();
 app.use(express.json());
 
@@ -12,13 +14,19 @@ app.listen(3005, ()=>{
     
 });
 
+app.post('/', auth, createTask);
+app.get('/', auth, getTasks);
+app.put('/:id', auth, updateTask);
+app.delete('/:id', auth, deleteTask);
+
+
 mongoose.connect("mongodb+srv://mansoureh225:1eomTfi0gbTkCsXb@cluster0.qbw1j.mongodb.net/Mansour?retryWrites=true&w=majority&appName=Cluster0"
 ).then(() => {
         console.log("Connected to MongoDB");
     }).catch((err) => {
         console.log("Failed to connect to MongoDB", err);
 });
-
+module.exports = router;
 // // username: mansoureh225
 // // password:  1eomTfi0gbTkCsXb
 
