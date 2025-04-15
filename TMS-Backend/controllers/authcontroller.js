@@ -1,7 +1,6 @@
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { JWT_SECRET } = require('../config/keys');
 
 exports.register = async (req, res) => {
   const { email, password } = req.body;
@@ -23,4 +22,9 @@ exports.login = async (req, res) => {
   }
   const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: '1h' });
   res.json({ token });
+};
+
+module.exports = {
+  DB_URI: process.env.DB_URI,
+  JWT_SECRET: process.env.JWT_SECRET,
 };
