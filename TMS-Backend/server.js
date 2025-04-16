@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require("mongoose");
-const auth = require('../middleware/auth');
+const auth = require('./middleware/auth');
 const router = express.Router();
 const app = express();
 app.use(express.json());
@@ -9,9 +9,7 @@ app.get('/', (req, res) => {
     res.send('Hello World, I am Youssouf Mansour');
 });
 app.listen(3005, ()=>{
-
     console.log("Server is running on 3005");
-    
 });
 
 app.post('/', auth, createTask);
